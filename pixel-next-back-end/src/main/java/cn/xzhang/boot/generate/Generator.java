@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Generator {
 
-    static String url = "jdbc:mysql://localhost:3306/my_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai";
+    static String url = "jdbc:mysql://localhost:3306/pixel_next?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai";
     static String username = "root";
     static String password = "123456";
 
@@ -18,9 +18,9 @@ public class Generator {
         // 生成文件的包名
         String basePackage = "cn.xzhang.boot";
         // 文件头描述
-        String description = "用户";
+        String description = "图片";
         // 实体类的表名 大写
-        String tableName = "user";
+        String tableName = "picture";
         // 生成的文件目录
         String path = "src/main/java/generated";
 

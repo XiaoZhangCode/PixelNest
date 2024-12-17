@@ -3,7 +3,7 @@ package cn.xzhang.boot.controller;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.hutool.core.io.FileUtil;
 import cn.xzhang.boot.common.pojo.CommonResult;
-import cn.xzhang.boot.constant.FileConstant;
+import cn.xzhang.boot.config.CosClientConfig;
 import cn.xzhang.boot.manager.CosManager;
 import cn.xzhang.boot.model.entity.User;
 import cn.xzhang.boot.model.enums.FileUploadBizEnum;
@@ -43,6 +43,9 @@ public class FileController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private CosClientConfig cosClientConfig;
+
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @SaCheckLogin
@@ -73,7 +76,7 @@ public class FileController {
             multipartFile.transferTo(file);
             cosManager.putObject(filepath, file);
             // 返回可访问地址
-            return CommonResult.success(FileConstant.COS_HOST + filepath);
+            return CommonResult.success(cosClientConfig.getUrl() + filepath);
         } catch (Exception e) {
             log.error("file upload error, filepath = " + filepath, e);
             throw exception(INTERNAL_SERVER_ERROR);

@@ -21,6 +21,8 @@ public interface GlobalErrorCodeConstants {
     ErrorCode NOT_FOUND = new ErrorCode(404, "请求未找到");
     ErrorCode METHOD_NOT_ALLOWED = new ErrorCode(405, "请求方法不正确");
     ErrorCode LOCKED = new ErrorCode(423, "请求失败，请稍后重试");
+    ErrorCode CUSTOMER_ERROR = new ErrorCode(423, "{}");
+
     ErrorCode TOO_MANY_REQUESTS = new ErrorCode(429, "请求过于频繁，请稍后重试");
     ErrorCode BAD_REQUEST_PARAMS = new ErrorCode(400, "请求参数不能为空");
     ErrorCode BAD_REQUEST_PARAM_ERROR = new ErrorCode(400, "请求参数错误");
