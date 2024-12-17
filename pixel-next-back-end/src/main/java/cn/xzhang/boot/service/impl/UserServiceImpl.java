@@ -124,7 +124,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             throw exception(USER_NOT_EXIST);
         }
         if (!user.getUserPassword().equals(encryptPassword)) {
-            throw exception(PASSWORD_NOT_MATCH);
+            throw exception(CUSTOMER_ERROR,"密码错误");
         }
         if (!UserStatusEnum.isNormal(user.getUserStatus())) {
             throw exception(USER_NOT_NORMAL);

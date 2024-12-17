@@ -48,7 +48,7 @@ public class FileManager {
      *
      * @param multipartFile    文件
      * @param uploadPathPrefix 上传路径前缀
-     * @return
+     * @return 图片信息
      */
     public UploadPictureResult uploadPicture(MultipartFile multipartFile, String uploadPathPrefix) {
         // 校验图片
@@ -78,7 +78,7 @@ public class FileManager {
             uploadPictureResult.setPicScale(picScale);
             uploadPictureResult.setPicFormat(imageInfo.getFormat());
             uploadPictureResult.setPicSize(FileUtil.size(file));
-            uploadPictureResult.setUrl(cosClientConfig.getUrl() + "/" + uploadPath);
+            uploadPictureResult.setUrl(cosClientConfig.getUrl() + uploadPath);
             return uploadPictureResult;
         } catch (Exception e) {
             log.error("图片上传到对象存储失败", e);

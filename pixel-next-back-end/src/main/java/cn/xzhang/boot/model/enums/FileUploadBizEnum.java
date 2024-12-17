@@ -16,8 +16,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Getter
 public enum FileUploadBizEnum {
-    // 枚举类型定义
-    USER_AVATAR("用户头像", "user_avatar");
+
+    USER_AVATAR("用户头像", "user_avatar"),
+    PICTURE("公共空间", "public");
 
     // 枚举实例的文本描述和对应的值
     private final String text;
@@ -25,6 +26,7 @@ public enum FileUploadBizEnum {
 
     /**
      * 获取所有枚举值的字符串表示列表。
+     *
      * @return 包含所有枚举实例值的字符串列表。
      */
     public static List<String> getValues() {
@@ -33,6 +35,7 @@ public enum FileUploadBizEnum {
 
     /**
      * 根据字符串值获取对应的枚举实例。
+     *
      * @param value 要查找的枚举实例的字符串值。
      * @return 如果找到匹配的枚举实例则返回之，否则返回null。
      */

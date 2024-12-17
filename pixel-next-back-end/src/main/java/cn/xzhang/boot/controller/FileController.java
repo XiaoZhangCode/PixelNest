@@ -49,7 +49,7 @@ public class FileController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @SaCheckLogin
-    @Operation(summary = "文件上传")
+    @Operation(summary = "通用文件上传")
     public CommonResult<String> uploadFile(
             @RequestPart(value = "file")
             @RequestParam("file")
