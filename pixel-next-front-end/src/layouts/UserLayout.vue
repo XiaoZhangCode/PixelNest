@@ -3,7 +3,7 @@
     <a-layout >
       <a-layout-header class="header">
         <a-space>
-          <img src="../assets/logo.svg" class="logo" alt="logo" width="25" height="25"/>
+          <img src="../assets/logo.png" class="logo" alt="logo"/>
           <h1 class="title">PixelNext</h1>
         </a-space>
       </a-layout-header>
@@ -28,6 +28,9 @@
 #userLayout .logo {
   width: 60px;
   height: 60px;
+  margin-right: 16px;
+  vertical-align: middle;
+  display: inline-block;
 }
 .header {
   margin-bottom: 0 !important;

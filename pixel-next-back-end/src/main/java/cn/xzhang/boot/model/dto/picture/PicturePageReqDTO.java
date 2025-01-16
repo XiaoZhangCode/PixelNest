@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 图片分页请求
@@ -20,14 +22,8 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class PicturePageReqDTO extends PageParam implements Serializable {
 
-
     @Schema(description = "id")
     private Long id;
-
-
-    @NotEmpty(message = "图片 url不能为空")
-    @Schema(description = "图片 url")
-    private String url;
 
     @NotEmpty(message = "图片名称不能为空")
     @Schema(description = "图片名称")
@@ -43,7 +39,7 @@ public class PicturePageReqDTO extends PageParam implements Serializable {
 
     @NotNull(message = "标签（JSON 数组）不能为空")
     @Schema(description = "标签（JSON 数组）",requiredMode = Schema.RequiredMode.REQUIRED)
-    private String tags;
+    private List<String> tags;
 
     @NotNull(message = "图片体积不能为空")
     @Schema(description = "图片体积",requiredMode = Schema.RequiredMode.REQUIRED)
@@ -67,6 +63,6 @@ public class PicturePageReqDTO extends PageParam implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(description = "编辑时间")
-    private java.util.Date editTime;
+    private Date editTime;
 
 }

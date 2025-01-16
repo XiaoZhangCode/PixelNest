@@ -3,7 +3,7 @@
     <a-row :wrap="false">
       <a-col flex="200px">
         <div class="title-bar">
-          <img class="logo" src="../assets/logo.svg" alt="logo" width="20" />
+          <img class="logo" src="../assets/logo.png" alt="logo"  />
           <div class="title">PixelNext</div>
         </div>
       </a-col>
@@ -69,7 +69,7 @@ const current = computed(() => {
   return [router.currentRoute.value.path];
 });
 
-let userStore = useLoginUserStore();
+const userStore = useLoginUserStore();
 // 展示在菜单的路由数组
 const visibleRoutes = computed(() => {
   return routes
@@ -89,7 +89,7 @@ const visibleRoutes = computed(() => {
       };
       if (route.children && route.children.length > 0) {
         // 如果有子路由，递归处理
-        // @ts-ignore
+        // @ts-expect-error 忽略类型检查 其实没有问题
         menuProps.children = route.children.map((childRoute) => {
           return {
             key: childRoute.path,
@@ -163,11 +163,14 @@ const myMenuClick = async ({ key }: { key: string }) => {
 .title {
   color: black;
   font-size: 16px;
+  font-weight: 500;
   margin-left: 16px;
 }
 
 .logo {
   height: 48px;
+  width: 48px;
+  object-fit: contain;
 }
 
 .userAvatar {

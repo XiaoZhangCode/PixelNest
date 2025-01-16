@@ -7,6 +7,7 @@ import cn.xzhang.boot.common.pojo.CommonResult;
 import cn.xzhang.boot.common.pojo.PageResult;
 import cn.xzhang.boot.constant.UserConstant;
 import cn.xzhang.boot.model.dto.picture.PicturePageReqDTO;
+import cn.xzhang.boot.model.dto.picture.PictureSaveReqDTO;
 import cn.xzhang.boot.model.dto.picture.PictureUploadReqDTO;
 import cn.xzhang.boot.model.entity.Picture;
 import cn.xzhang.boot.model.entity.User;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import static cn.xzhang.boot.common.exception.enums.GlobalErrorCodeConstants.BAD_REQUEST_PARAMS;
 
@@ -63,6 +65,52 @@ public class PictureController {
         // 调用服务层方法，上传图片，并返回图片相关信息
         return CommonResult.success(pictureService.uploadPicture(multipartFile, uploadReqDTO, loginUser));
     }
+
+    /**
+     * 创建picture
+     *
+     * @param pictureReqDTO picture添加请求数据传输对象，包含新增Picture的信息
+     * @return 返回操作结果，其中包含新添加picture的ID
+     */
+    @PostMapping("/add")
+    @Operation(summary = "创建图片")
+    @SaCheckRole(UserConstant.ADMIN_ROLE)
+    public CommonResult<Long> addPicture(@RequestBody PictureSaveReqDTO pictureReqDTO) {
+        if (pictureReqDTO == null) {
+            return CommonResult.error(BAD_REQUEST_PARAMS);
+        }
+        // 调用服务层方法，添加，并获取添加结果
+        long result = pictureService.addPicture(pictureReqDTO);
+        // 返回添加成功响应结果
+        return CommonResult.success(result);
+    }
+
+
+    @PutMapping("/update")
+    @Operation(summary = "更新图片信息")
+    @SaCheckRole(UserConstant.ADMIN_ROLE)
+    public CommonResult<Boolean> updatePicture(@RequestBody @Valid PictureSaveReqDTO pictureReqDTO) {
+        // 检查传入的请求数据是否为空
+        if (pictureReqDTO == null) {
+            return CommonResult.error(BAD_REQUEST_PARAMS);
+        }
+        // 调用服务层方法，更新信息，并获取更新结果
+        boolean result = pictureService.updatePicture(pictureReqDTO);
+        // 返回更新信息成功响应结果
+        return CommonResult.success(result);
+    }
+
+    @PutMapping("/edit")
+    @Operation(summary = "编辑图片")
+    public CommonResult<Boolean> editPicture(@RequestBody @Valid PictureSaveReqDTO pictureReqDTO) {
+        // 检查传入的请求数据是否为空
+        if (pictureReqDTO == null) {
+            return CommonResult.error(BAD_REQUEST_PARAMS);
+        }
+        return CommonResult.success(pictureService.editPicture(pictureReqDTO));
+    }
+
+
 
     @DeleteMapping("/delete")
     @Operation(summary = "删除图片")
@@ -110,7 +158,8 @@ public class PictureController {
     @SaCheckRole(UserConstant.ADMIN_ROLE)
     public CommonResult<PageResult<PictureVo>> getPicturePage(PicturePageReqDTO picturePageReqDTO) {
         // 调用服务层方法，获取分页信息，并返回结果
-        return CommonResult.success(pictureService.getPicturePage(picturePageReqDTO));
+        PageResult<PictureVo> picturePage = pictureService.getPicturePage(picturePageReqDTO);
+        return CommonResult.success(picturePage);
     }
 
 }

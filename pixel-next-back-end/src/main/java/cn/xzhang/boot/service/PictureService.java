@@ -31,6 +31,23 @@ public interface PictureService extends IService<Picture> {
 
 
     /**
+     * 添加图片信息。
+     *
+     * @param pictureReqDTO 图片添加请求数据传输对象，包含要添加的图片的所有必要信息。
+     * @return 返回添加操作的自增ID，用于标识此次添加操作。
+     */
+    long addPicture(PictureSaveReqDTO pictureReqDTO);
+
+    /**
+     * 更新图片信息。
+     *
+     * @param pictureReqDTO 包含图片更新信息的请求DTO（数据传输对象）。该对象应包含需要更新的图片属性。
+     * @return boolean 返回true如果图片信息更新成功，返回false如果更新失败或遇到错误。
+     */
+    boolean updatePicture(PictureSaveReqDTO pictureReqDTO);
+
+
+    /**
      * 删除图片
      *
      * @param id 图片的唯一标识符
@@ -63,6 +80,5 @@ public interface PictureService extends IService<Picture> {
     PictureVo getPictureVO(Picture picture);
 
 
-
-
+    Boolean editPicture(PictureSaveReqDTO pictureReqDTO);
 }

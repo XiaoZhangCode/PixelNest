@@ -8,6 +8,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -42,7 +44,7 @@ public class PictureSaveReqDTO {
 
     @NotNull(message = "标签（JSON 数组）不能为空")
     @Schema(description = "标签（JSON 数组）",requiredMode = Schema.RequiredMode.REQUIRED)
-    private String tags;
+    private List<String> tags;
 
     @NotNull(message = "图片体积不能为空")
     @Schema(description = "图片体积",requiredMode = Schema.RequiredMode.REQUIRED)
@@ -66,6 +68,6 @@ public class PictureSaveReqDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Schema(description = "编辑时间")
-    private java.util.Date editTime;
+    private Date editTime;
 
 }
